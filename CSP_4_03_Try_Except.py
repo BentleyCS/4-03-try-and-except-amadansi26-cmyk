@@ -1,58 +1,52 @@
-#No using the built in type check function
-#https://www.w3schools.com/python/python_try_except.asp
-
-
 def sum(arr : list) -> int:
-    """
-    Modify the function such that it returns the sum of all numebrs within the given list.
-    :param arr:
-    :return:
-    """
-    pass
+    total = 0
+    for i in range(len(arr)):
+        total = total + arr[i]
+    return total
+print(sum([1, 1, 2]))
+
 
 def cleanData(rawData : list) ->list:
-    """
-    modify the function such that it takes in a list as an argument will return a new list that
-     contains only the valeus that can be typecast to a float.
-    :param rawData:
-    :return:
-    """
-    pass
+    final_list = list()
+    for i in range(len(rawData)):
+        try:
+            float_value = float(rawData[i])
+            final_list.append(float_value)
+        except ValueError:
+            continue
+    return final_list
+print(cleanData([6, 7, 6, "egg", "menx", "max", 7.111, "yes123", "12345"]))
+
+
+
 def unreliableCalculator(divisors : list) -> list:
-    """
-    Modify the function such that it takes in a list as an argument and returns a new list where each
-    index is 100 divided by the values from the input list.
-    If division ever causes an error instead have the value be the type of error as a string.
-    Example the list [100,50,25,"5"] as an argument would return [1, 2, 4, "TypeError"]
-    :param divisors:
-    :return:
-    """
-    pass
+    final_list = list()
+    for i in range(len(divisors)):
+        try:
+            quotient = 100/divisors[i]
+            final_list.append(quotient)
+        except Exception as e:
+            final_list.append(e)
+    return final_list
+print(unreliableCalculator([200, 6, "hi", 111.113, 10, 500]))
+
 
 
 def upperAll(arr : list) -> None:
-    """
-    Modiy the function such that is uppercases all strings within the given argument list.
-    The string method .upper() turns all characters in as tirng uppercase.
-    You should mpdify the original list not return a new list.
-    :param arr:
-    :return:
-    """
-    x = "hello"
-    print(x)
-    x = x.upper()
-    print(x)
+    for index, item in enumerate(arr):
+        arr[index] = item.upper()
+arr = ["im", "tired"]
+upperAll(arr)
+print(arr)
 
 
 def firstItems(arr : list) -> list:
-    """
-    Modify the function below such that given a list of values. Many of the list elements will be lists
-    themselves. For any list element that is a list grab the first element from that list. If the list
-    element is not a list then just grab the value itself.
-    Create a new list of all the first indexes of inner lists or just values themselves.
-    Example firstItems( [[1,2],[3,4],[5,6],[7,8]],9 ) == [1,3,5,7,9]
-    :param arr:
-    :return:
-    """
-    pass
-
+    final_list = list()
+    for i in range(len(arr)):
+        try:
+            first_value = arr[i][0]
+            final_list.append(first_value)
+        except Exception as e:
+            final_list.append(arr[i])
+    return final_list
+print(firstItems([1, [2, 3, 4]]))

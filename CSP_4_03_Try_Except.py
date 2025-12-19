@@ -1,7 +1,14 @@
+#No using the built in type check function
+#https://www.w3schools.com/python/python_try_except.asp
+
+
 def sum(arr : list) -> int:
     total = 0
     for i in range(len(arr)):
-        total = total + arr[i]
+        try:
+            total = total + arr[i]
+        except:
+            continue
     return total
 print(sum([1, 1, 2]))
 
@@ -25,17 +32,23 @@ def unreliableCalculator(divisors : list) -> list:
         try:
             quotient = 100/divisors[i]
             final_list.append(quotient)
-        except Exception as e:
-            final_list.append(e)
+        except ZeroDivisionError:
+            final_list.append("ZeroDivisionError")
+        except TypeError:
+            final_list.append("TypeError")
     return final_list
-print(unreliableCalculator([200, 6, "hi", 111.113, 10, 500]))
+print(unreliableCalculator([200, 6, "hi", 111.113, 10, 500, 0]))
 
 
 
 def upperAll(arr : list) -> None:
-    for index, item in enumerate(arr):
-        arr[index] = item.upper()
-arr = ["im", "tired"]
+        for index, item in enumerate(arr):
+            try:
+                arr[index] = item.upper()
+            except:
+                continue
+
+arr = ["im", "tired", 1]
 upperAll(arr)
 print(arr)
 
@@ -50,3 +63,5 @@ def firstItems(arr : list) -> list:
             final_list.append(arr[i])
     return final_list
 print(firstItems([1, [2, 3, 4]]))
+
+
